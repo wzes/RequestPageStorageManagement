@@ -1,0 +1,179 @@
+﻿<Window x:Class="RequestPageStorageManagement.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RequestPageStorageManagement"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="1552730 寸宣堂 请求调页存储方式" Height="600" Width="950" WindowStartupLocation="CenterScreen" Padding="10" Visibility="Visible" AllowsTransparency="True" WindowStyle="None">
+
+    <Grid>
+        <DockPanel>
+            <materialDesign:ColorZone Padding="12" materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                            Mode="PrimaryMid" DockPanel.Dock="Top">
+                <DockPanel>
+                    <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
+                   
+                    <Button Height="30" Width="30"  Margin="5,0,0,0" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Name="Max" Style="{DynamicResource MaterialDesignFloatingActionDarkButton}" Click="Exit_Click" >
+                        <materialDesign:PackIcon Kind="Close" />
+                    </Button>
+
+                    <Button Height="30" Width="30" Margin="5,0,0,0" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Name="Exit" Style="{DynamicResource MaterialDesignFloatingActionDarkButton}" Click="Max_Click" >
+                        <materialDesign:PackIcon Kind="WindowMaximize" />
+                    </Button>
+                    
+                    <Button Height="30" Width="30" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Name="Min" Style="{DynamicResource MaterialDesignFloatingActionDarkButton}" Click="Min_Click" >
+                        <materialDesign:PackIcon Kind="WindowMinimize" />
+                    </Button>
+                    <TextBlock HorizontalAlignment="Left" Margin="16 0 0 0" VerticalAlignment="Center" FontSize="22">操作系统请求调页存储方式</TextBlock>
+                </DockPanel>
+            </materialDesign:ColorZone>
+
+            <DockPanel>
+                <!--设置-->
+                <StackPanel Background="#FFF7ECEC" DockPanel.Dock="Left" Width="150">
+                    <TextBlock Margin="8,5,0,0">
+                        指令顺序
+                    </TextBlock>
+                    <Grid Margin="5, 10, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <materialDesign:PackIcon Kind="Buffer" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                        <ComboBox Name="orderComboBox" Margin="6,0,6,0" materialDesign:HintAssist.Hint="默认" Grid.Row="0" Grid.Column="1" SelectionChanged="orderComboBox_SelectionChanged">
+                            <ComboBoxItem>默认</ComboBoxItem>
+                            <ComboBoxItem>随机</ComboBoxItem>
+                            <ComboBoxItem>顺序</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+
+                    <TextBlock Margin="8, 10, 0, 0">
+                        置换算法
+                    </TextBlock>
+                    <Grid Margin="5, 10, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <materialDesign:PackIcon Kind="Calculator" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                        <ComboBox Name="changeComboBox" Margin="6,0,6,0" materialDesign:HintAssist.Hint="FIFO" Grid.Row="0" Grid.Column="1" SelectionChanged="changeComboBox_SelectionChanged">
+                            <ComboBoxItem>FIFO</ComboBoxItem>
+                            <ComboBoxItem>LRU</ComboBoxItem>
+
+                        </ComboBox>
+                    </Grid>
+
+                    <TextBlock  Margin="8, 10, 0, 0">
+                        执行机制
+                    </TextBlock>
+                    <Grid Margin="5, 10, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <materialDesign:PackIcon Kind="Buffer" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                        <ComboBox Name="excuteComboBox" Margin="6,0,6,0" materialDesign:HintAssist.Hint="自动" Grid.Row="0" Grid.Column="1" SelectionChanged="excuteComboBox_SelectionChanged">
+                            <ComboBoxItem>自动</ComboBoxItem>
+                            <ComboBoxItem>单步</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+
+                    <TextBlock  Margin="8, 10, 0, 0">
+                        指令条数
+                    </TextBlock>
+                    <Grid Margin="5, 10, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <materialDesign:PackIcon Kind="Buffer" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                        <ComboBox Name="numComboBox" Margin="6,0,6,0" materialDesign:HintAssist.Hint="320" Grid.Row="0" Grid.Column="1" SelectionChanged="numComboBox_SelectionChanged">
+                            <ComboBoxItem>320</ComboBoxItem>
+                            <ComboBoxItem>280</ComboBoxItem>
+                            <ComboBoxItem>240</ComboBoxItem>
+                            <ComboBoxItem>200</ComboBoxItem>
+                            <ComboBoxItem>160</ComboBoxItem>
+                            <ComboBoxItem>120</ComboBoxItem>
+                            <ComboBoxItem>80</ComboBoxItem>
+                            <ComboBoxItem>40</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+
+                    <TextBlock  Margin="8, 10, 0, 0">
+                        每页指令条数
+                    </TextBlock>
+                    <Grid Margin="5, 10, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <materialDesign:PackIcon Kind="Buffer" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                        <ComboBox Name="instruction_pageComboBox" Margin="6,0,6,0" materialDesign:HintAssist.Hint="10" Grid.Row="0" Grid.Column="1" SelectionChanged="instruction_pageComboBox_SelectionChanged">
+                            <ComboBoxItem>14</ComboBoxItem>
+                            <ComboBoxItem>12</ComboBoxItem>
+                            <ComboBoxItem>10</ComboBoxItem>
+                            <ComboBoxItem>8</ComboBoxItem>
+                            <ComboBoxItem>6</ComboBoxItem>
+                            <ComboBoxItem>4</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+
+                    <TextBlock Margin="8, 10, 0, 0">
+                        作业占用块
+                    </TextBlock>
+                    <Grid Margin="5, 10, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <materialDesign:PackIcon Kind="Buffer" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                        <ComboBox Name="instruction_memeryComboBox" Margin="6,0,6,0" materialDesign:HintAssist.Hint="4" Grid.Row="0" Grid.Column="1" SelectionChanged="instruction_memeryComboBox_SelectionChanged">
+                            <ComboBoxItem>8</ComboBoxItem>
+                            <ComboBoxItem>7</ComboBoxItem>
+                            <ComboBoxItem>6</ComboBoxItem>
+                            <ComboBoxItem>5</ComboBoxItem>
+                            <ComboBoxItem>4</ComboBoxItem>
+                            <ComboBoxItem>3</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+
+
+                <!--<DockPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                        <Button Margin="0,5,10,0">当前演示</Button>
+                        <Separator/>
+                        <Button Margin="0,5,10,0">历史记录</Button>
+                    </StackPanel>
+                </DockPanel>-->
+                <DockPanel>
+                    <local:Show HorizontalAlignment="Stretch">
+                    </local:Show>
+                </DockPanel>
+            </DockPanel>
+        </DockPanel>
+    </Grid>
+
+
+
+</Window>

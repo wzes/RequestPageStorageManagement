@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="RequestPageStorageManagement.Show"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:RequestPageStorageManagement"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="*"/>
+            <RowDefinition  Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Name="scrollView" Grid.Row="0">
+            
+                <DataGrid Name="dataGrid" Margin="0 0 0 0" HorizontalContentAlignment="Center" CanUserSortColumns="False" CanUserAddRows="False" AutoGenerateColumns="False"
+                      materialDesign:DataGridAssist.CellPadding="20 8 8 20" materialDesign:DataGridAssist.ColumnHeaderPadding="10" Background="#FFF8F8FC" HeadersVisibility="Column" GridLinesVisibility="Horizontal" VerticalGridLinesBrush="{x:Null}" HorizontalGridLinesBrush="#FF512DA8">
+                    <DataGrid.Columns>
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding Number, Mode=TwoWay}"
+                                                               Header="指令序号"   
+                                                                   Width="*"
+                                                                  
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" IsReadOnly="True" 
+                                                               />
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding Instruction_id, Mode=TwoWay}"
+                                                               Header="指令地址" 
+                                                                   Width="*"
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding Page, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                               Header="指令所在页" 
+                                                                   Width="*"
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding LackPage, Mode=TwoWay}"
+                                                               Header="是否缺页" 
+                                                                   Width="*"
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding Memery, Mode=TwoWay}"
+                                                               Header="内存块" 
+                                                                   Width="*"
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding OutPage, Mode=TwoWay}"
+                                                               Header="换出页" 
+                                                                   Width="*"
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+                        <materialDesign:MaterialDataGridTextColumn Binding="{Binding InPage, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                               Header="换入页" 
+                                                                   Width="*"
+                                                               EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"  />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+           
+        </ScrollViewer>
+        
+        <DockPanel Grid.Row="1" Background="#FFFBDCDC">
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Button Click="Restart_click"  Height="41" Width="41" Grid.Row="0" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                        Margin="5,5,5,5" HorizontalAlignment="Center"
+                        ToolTip="复位" Content="复位"/>
+
+
+                <Button Click="Start_click"  Height="51" Width="51" Grid.Row="0" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                        Margin="5,5,5,5" HorizontalAlignment="Center"
+                        ToolTip="开始">
+                    <materialDesign:PackIcon Kind="Play" Name="myToggle_icon" Tag="2" Height="40" Width="40" />
+                </Button>
+                <!--<Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                        Click="Start_click"  Height="51" Width="51" Grid.Row="0" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                            materialDesign:DialogHost.DialogClosingAttached="Sample2_DialogHost_OnDialogClosing"
+                           >
+                    <Button.CommandParameter>
+                        <StackPanel Margin="16">
+                            <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" HorizontalAlignment="Center" Margin="16" IsIndeterminate="True" Value="0" />
+                            
+                        </StackPanel>
+                    </Button.CommandParameter>
+                    <materialDesign:PackIcon Kind="Play" Name="myToggle_icon" Tag="2" Height="40" Width="40" />
+                </Button>-->
+            </Grid>
+            <materialDesign:Snackbar DockPanel.Dock="Top" MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
+                                            Grid.Row="1" />
+        </DockPanel>
+        
+    </Grid>
+
+</UserControl>
